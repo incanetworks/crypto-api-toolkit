@@ -175,17 +175,17 @@ all-local: libp11SgxEnclave.la
 		@echo "--------------------libp11SgxEnclave.signed.so built-----------------------------"
 
 install-exec-local:
-	cp .libs/libp11SgxEnclave.signed.so $(prefix)/lib
+	cp .libs/libp11SgxEnclave.signed.so $(DESTDIR)$(prefix)/lib
 
 uninstall-local:
-	rm -f $(prefix)/lib/libp11SgxEnclave.signed.so* \
-	rm -f $(prefix)/lib/libp11SgxEnclave.so.*       \
-    rm -f $(prefix)/include/cryptoki.h              \
-    rm -f $(prefix)/include/pkcs11t.h               \
-    rm -f $(prefix)/include/pkcs11.h                \
-    rm -f $(prefix)/include/pkcs11f.h               \
-    rm -f $(prefix)/include/QuoteGeneration.h       \
-    rm -f $(prefix)/include/QuoteGenerationDefs.h
+	rm -f $(DESTDIR)$(prefix)/lib/libp11SgxEnclave.signed.so* \
+	rm -f $(DESTDIR)$(prefix)/lib/libp11SgxEnclave.so.*       \
+    rm -f $(DESTDIR)$(prefix)/include/cryptoki.h              \
+    rm -f $(DESTDIR)$(prefix)/include/pkcs11t.h               \
+    rm -f $(DESTDIR)$(prefix)/include/pkcs11.h                \
+    rm -f $(DESTDIR)$(prefix)/include/pkcs11f.h               \
+    rm -f $(DESTDIR)$(prefix)/include/QuoteGeneration.h       \
+    rm -f $(DESTDIR)$(prefix)/include/QuoteGenerationDefs.h
 
 clean-local:
 	test -z *.la || rm -rf *.la

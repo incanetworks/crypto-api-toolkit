@@ -77,12 +77,12 @@ clean-local:
 	rm -f src/dep_check/sgxssl/OSSLVersionEnclave/Enclave/Enclave_t.*
 
 install-exec-local:
-	mkdir -p $(CATKTOKENPATH)/tokens
-	chmod -R 1777 $(CATKTOKENPATH)/tokens
-	mkdir -p $(prefix)/include
-	chmod -R 1777 $(prefix)/include
-	cp $(srcdir)/src/p11/trusted/SoftHSMv2/common/QuoteGeneration.h $(srcdir)/src/p11/trusted/SoftHSMv2/common/cryptoki.h $(srcdir)/src/p11/trusted/SoftHSMv2/common/QuoteGenerationDefs.h $(prefix)/include
+	mkdir -p $(DESTDIR)$(CATKTOKENPATH)/tokens
+	chmod -R 1777 $(DESTDIR)$(CATKTOKENPATH)/tokens
+	mkdir -p $(DESTDIR)$(prefix)/include
+	chmod -R 1777 $(DESTDIR)$(prefix)/include
+	cp $(srcdir)/src/p11/trusted/SoftHSMv2/common/QuoteGeneration.h $(srcdir)/src/p11/trusted/SoftHSMv2/common/cryptoki.h $(srcdir)/src/p11/trusted/SoftHSMv2/common/QuoteGenerationDefs.h $(DESTDIR)$(prefix)/include
 
 if !WITH_P11_KIT
-	cp $(srcdir)/src/p11/trusted/SoftHSMv2/pkcs11/* $(prefix)/include
+	cp $(srcdir)/src/p11/trusted/SoftHSMv2/pkcs11/* $(DESTDIR)$(prefix)/include
 endif
