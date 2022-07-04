@@ -98,6 +98,16 @@ AS_IF([test "x$ENABLE_DCAP" = "xyes"],
       ]
       )
 
+AC_ARG_ENABLE([sgx-sim],
+[  --enable-sgx-sim    Turn on debugging],
+[case "${enableval}" in
+  yes) SGX_SIM=true ;;
+  no)  SGX_SIM=false ;;
+  *) AC_MSG_ERROR([bad value ${enableval} for --enable-sgx-sim]) ;;
+esac],[SGX_SIM=false])
+
+AM_CONDITIONAL([SGX_SIM], [test x$SGX_SIM = xtrue])
+
 AC_ARG_ENABLE([ephemeral-quote],
               AC_HELP_STRING([--enable-ephemeral-quote], [Requires this option to destroy quote generation key after one unwrap]),
               [EPHEMERAL_QUOTE_SUPPORT="${enableval}"],

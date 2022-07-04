@@ -45,6 +45,12 @@ AM_CPPFLAGS = -I$(srcdir)/../../../ -I$(srcdir)/../enclave_config -I$(SGXSDKDIR)
 DCAP_LIB =
 endif
 
+if SGX_SIM
+URTS_LIBS = -lsgx_urts_sim -lsgx_uae_service_sim
+else
+URTS_LIBS = -lsgx_urts
+endif
+
 if WITH_P11_KIT
 AM_CPPFLAGS += -I$(P11_KIT_INCLUDE_PATH)
 else
@@ -54,7 +60,7 @@ endif
 AM_CXXFLAGS = -D_FORTIFY_SOURCE=2 -m64 -std=c++11 -fpie -fpic -fstack-protector -Wformat -Wformat-security -fexceptions -fno-strict-overflow -fno-delete-null-pointer-checks -fwrapv -Wreturn-type -Werror=return-type
 AM_CFLAGS = -D_FORTIFY_SOURCE=2 -m64 -std=c11 -fvisibility=hidden -fpie -fpic -fstack-protector -Wformat -Wformat-security -fexceptions -fno-strict-overflow -fno-delete-null-pointer-checks -fwrapv -Wreturn-type -Werror=return-type
 
-AM_LDFLAGS = -L$(SGXSSLDIR)/lib64 -lsgx_usgxssl -L$(SGXSDKDIR)/lib64 $(DCAP_LIB) -lsgx_urts -lsgx_uprotected_fs \
+AM_LDFLAGS = -L$(SGXSSLDIR)/lib64 -lsgx_usgxssl -L$(SGXSDKDIR)/lib64 $(DCAP_LIB) $(URTS_LIBS) -lsgx_uprotected_fs \
              -Wl,-z,noexecstack -Wl,-z,relro -Wl,-z,now -pie -export-dynamic -module -shared
 
 lib_LTLIBRARIES = libp11sgx.la

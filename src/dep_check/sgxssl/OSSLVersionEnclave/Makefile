@@ -50,7 +50,9 @@ SGX_COMMON_CXXFLAGS := $(SGX_COMMON_FLAGS) -Wnon-virtual-dtor -std=c++11
 
 ######## App Settings ########
 
-Urts_Library_Name := sgx_urts
+Sim_Suffix := _sim
+
+Urts_Library_Name := sgx_urts${Sim_Suffix}
 
 App_Cpp_Files := App/OSSLVersion.cpp
 App_Include_Paths := -I$(SGX_SDK)/include
@@ -66,7 +68,7 @@ App_Name := OSSLVersion
 
 ######## Enclave Settings ########
 
-Trts_Library_Name := sgx_trts
+Trts_Library_Name := sgx_trts${Sim_Suffix}
 Service_Library_Name := sgx_tservice
 
 Crypto_Library_Name := sgx_tcrypto
