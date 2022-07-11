@@ -72,7 +72,7 @@ CK_RV initialize(CK_VOID_PTR pInitArgs)
     rv = checkInitArgs(pInitArgs);
     if (rv != CKR_OK)
     {
-        return rv;
+        //return rv;
     }
 
     P11Crypto::EnclaveHelpers enclaveHelpers;

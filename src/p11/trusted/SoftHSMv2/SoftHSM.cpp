@@ -473,7 +473,7 @@ CK_RV SoftHSM::C_Initialize(CK_VOID_PTR pInitArgs)
 			args->LockMutex != NULL_PTR ||
 			args->UnlockMutex != NULL_PTR)
 		{
-			return CKR_ARGUMENTS_BAD;
+			//return CKR_ARGUMENTS_BAD;
 		}
 
 		// Can we spawn our own threads?
